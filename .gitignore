@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Databricks
+.databricks/
+*.dbc
+
+# Data (raw files not committed)
+data/
+*.parquet
+*.csv
+*.json
+
+# Logs
+*.log
+
+# Env
+.env
+
+# OS
+.DS_Store
+Thumbs.db
