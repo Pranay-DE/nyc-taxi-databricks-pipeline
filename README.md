@@ -34,4 +34,21 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
 
 ## Status
 
-🚧 Project in progress — Bronze ingestion phase
+🚧 Project in progress — Bronze layer complete
+
+### Completed
+- ✅ Databricks catalog, schemas (`bronze`/`silver`/`gold`), and Volume created
+- ✅ 3 months of NYC TLC Yellow Taxi data (April–June 2025) uploaded to Volume
+- ✅ Bronze Delta table `nyc_taxi.bronze.raw_trips` created (12,885,358 rows, 19 columns)
+- ✅ Verified via `COUNT(*)`, `DESCRIBE`, and `SELECT * LIMIT 10`
+
+### Next Steps
+- 🔜 Silver layer — cleaning, deduplication, type casting, derived columns
+- 🔜 Gold layer — business aggregates for reporting
+- 🔜 Databricks Workflows — schedule the pipeline to run daily
+
+## 📈 Results
+
+**Bronze ingestion — 12.88M rows loaded into a Delta table:**
+
+![Bronze ingestion](docs/databricks_bronze_ingestion.png)
