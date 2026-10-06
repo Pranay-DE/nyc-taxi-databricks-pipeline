@@ -34,13 +34,14 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
 
 ## Status
 
-🚧 Project in progress — Bronze layer complete
+🚧 Project in progress — Silver layer (audit complete)
 
 ### Completed
 - ✅ Databricks catalog, schemas (`bronze`/`silver`/`gold`), and Volume created
 - ✅ 3 months of NYC TLC Yellow Taxi data (April–June 2025) uploaded to Volume
 - ✅ Bronze Delta table `nyc_taxi.bronze.raw_trips` created (12,885,358 rows, 19 columns)
-- ✅ Verified via `COUNT(*)`, `DESCRIBE`, and `SELECT * LIMIT 10`
+- ✅ Data quality audit — see [`docs/DATA_QUALITY_AUDIT.md`](./docs/DATA_QUALITY_AUDIT.md)
+- ✅ Audit notebook: `notebooks/02_silver_audit.ipynb`
 
 ### Next Steps
 - 🔜 Silver layer — cleaning, deduplication, type casting, derived columns
@@ -52,3 +53,11 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
 **Bronze ingestion — 12.88M rows loaded into a Delta table:**
 
 ![Bronze ingestion](docs/databricks_bronze_ingestion.png)
+
+**Data quality audit — unexpected dates outside the target range:**
+
+![Audit — dates](docs/silver_audit_dates.png)
+
+**Data quality audit — invalid records found (1.66M rows affected):**
+
+![Audit — invalid data](docs/silver_audit_invalid_data.png)
