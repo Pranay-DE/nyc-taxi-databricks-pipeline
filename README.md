@@ -42,7 +42,7 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
 - ✅ Bronze Delta table `nyc_taxi.bronze.raw_trips` created (12,885,358 rows, 19 columns)
 - ✅ Data quality audit — see [`docs/DATA_QUALITY_AUDIT.md`](./docs/DATA_QUALITY_AUDIT.md)
 - ✅ Audit notebook: `notebooks/02_silver_audit.ipynb`
-- ✅ Silver Delta table `nyc_taxi.silver.trips_clean` created (11,634,226 rows after cleaning)
+- ✅ Silver Delta table `nyc_taxi.silver.trips_clean` created (11,634,221 rows after cleaning and deduplication)
 - ✅ Silver validation — all impossible-record checks pass (0 invalid rows)
 - ✅ Derived columns added: `trip_duration_minutes`, `tip_percentage`, `pickup_hour`, `pickup_day_of_week`, `has_valid_passenger_count`
 
@@ -64,5 +64,9 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
 **Silver validation — impossible records removed (all checks pass):**
 
 ![Silver validation](docs/silver_validation.png)
+
+**Silver validation — duplicate check returns 0:**
+
+![Silver validation duplicates](docs/silver_validation_duplicates.png)
 
 > 📓 Full validation notebook: [`notebooks/04_silver_validation.ipynb`](./notebooks/04_silver_validation.ipynb)

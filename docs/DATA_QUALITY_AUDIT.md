@@ -93,6 +93,24 @@ Ordered steps applied in the Silver notebook:
 
 ~11.5M rows after cleaning (approximately 1.4M filtered out).
 
+---
+
+## Post-Transformation Validation
+
+After transformation and deduplication, the Silver table was re-validated:
+
+| Check | Result |
+|---|---|
+| Rows after date filter + validity filter | 11,634,226 |
+| Duplicate groups found | Multiple (see Silver validation notebook) |
+| Rows after deduplication | **11,634,221** |
+| Remaining duplicates | **0** |
+| Invalid records remaining | 0 |
+
+**Net cleaning result:** 1,251,137 rows removed from Bronze (9.7%).
+
+See [`notebooks/04_silver_validation.ipynb`](../notebooks/04_silver_validation.ipynb) for the full validation queries.
+
 ## Audit Reproducibility
 
 To reproduce this audit:
