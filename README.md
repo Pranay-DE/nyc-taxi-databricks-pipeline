@@ -75,3 +75,6 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
 ![Silver validation duplicates](docs/silver_validation_duplicates.png)
 
 > 📓 Full validation notebook: [`notebooks/04_silver_validation.ipynb`](./notebooks/04_silver_validation.ipynb)
+
+**Gold layer — all 4 tables built and verified:**
+![Gold verification](docs/gold_verification.png)
