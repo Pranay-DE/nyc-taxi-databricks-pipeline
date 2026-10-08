@@ -34,7 +34,7 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
 
 ## Status
 
-🚧 Project in progress — Silver layer complete
+🚧 Project in progress — Gold layer complete
 
 ### Completed
 - ✅ Databricks catalog, schemas (`bronze`/`silver`/`gold`), and Volume created
@@ -45,10 +45,15 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
 - ✅ Silver Delta table `nyc_taxi.silver.trips_clean` created (11,634,221 rows after cleaning and deduplication)
 - ✅ Silver validation — all impossible-record checks pass (0 invalid rows)
 - ✅ Derived columns added: `trip_duration_minutes`, `tip_percentage`, `pickup_hour`, `pickup_day_of_week`, `has_valid_passenger_count`
+- ✅ Gold layer — 4 tables:
+  - `gold.dim_date` — Kimball date dimension (91 rows)
+  - `gold.daily_summary` — daily trips + revenue aggregates (91 rows)
+  - `gold.hourly_demand` — demand by day-of-week × hour (168 rows)
+  - `gold.zone_performance` — trips + revenue by pickup zone, joined with zone lookup (261 rows)
 
 ### Next Steps
-- 🔜 Gold layer — business aggregates for reporting
 - 🔜 Databricks Workflows — schedule the pipeline to run daily
+- 🔜 Dashboard / BI — visualize the Gold tables
 
 ## 📈 Results
 
