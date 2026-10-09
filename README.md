@@ -34,7 +34,7 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
 
 ## Status
 
-🚧 Project in progress — Gold layer complete
+🚧 Project in progress — Transformation phase complete
 
 ### Completed
 - ✅ Databricks catalog, schemas (`bronze`/`silver`/`gold`), and Volume created
@@ -50,10 +50,17 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
   - `gold.daily_summary` — daily trips + revenue aggregates (91 rows)
   - `gold.hourly_demand` — demand by day-of-week × hour (168 rows)
   - `gold.zone_performance` — trips + revenue by pickup zone, joined with zone lookup (261 rows)
+- ✅ Gold validation — row counts, schema, cross-table consistency, and business rules all pass
 
 ### Next Steps
 - 🔜 Databricks Workflows — schedule the pipeline to run daily
 - 🔜 Dashboard / BI — visualize the Gold tables
+
+## 📝 Known Observations
+
+- **`daily_summary` column order** — `pickup_date` precedes `date_key` (natural key first for readability). This is intentional and differs from the `.select()` order used in `dim_date`.
+- **Zone lookup coverage** — some pickup zones in the TLC data are not present in the official `taxi_zone_lookup.csv`. These are coalesced to `"Unknown"` rather than dropped, preserving trip counts.
+- **`VendorID = 2` duplicates** — a small number of duplicate rows were detected in the Silver audit and removed via `row_number()` deduplication.
 
 ## 📈 Results
 
@@ -78,3 +85,12 @@ NYC TLC Trip Record Data — [source](https://www.nyc.gov/site/tlc/about/tlc-tri
 
 **Gold layer — all 4 tables built and verified:**
 ![Gold verification](docs/gold_verification.png)
+
+**Gold validation — cross-table consistency (11,634,221 = 11,634,221):**
+
+![Gold validation — consistency](docs/gold_validation_cells.png)
+
+**Gold validation — business rules all pass (0 violations):**
+
+![Gold validation — rules](docs/gold_validation_rules.png)
+
